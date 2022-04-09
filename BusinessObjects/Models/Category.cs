@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BussinessObjects.Models
+namespace BusinessObjects.Models
 {
     [Table("Categories", Schema = "whm")]
     public class Category : Audit

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BussinessObjects.Models
+namespace BusinessObjects.Models
 {
     [Table("Products", Schema = "whm")]
     public class Product : Audit

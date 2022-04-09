@@ -1,4 +1,6 @@
+using ApplicationLayer.ApplicationLayerDependecyInjection;
 using DataLayer.Context;
+using DataLayer.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,8 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddDbContext<WHMDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("WHMConnection")));
+services.AddApplicationLayerDependecyInjection();
+services.AddDataLayerDependencyInjection();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

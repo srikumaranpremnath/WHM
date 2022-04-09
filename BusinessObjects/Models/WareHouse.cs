@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace BussinessObjects.Models
+namespace BusinessObjects.Models
 {
     public class WareHouse : Audit
     {

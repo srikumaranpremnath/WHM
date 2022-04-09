@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BussinessObjects.Models
+namespace BusinessObjects.Models
 {
     [Table("SubCategories", Schema = "whm")]
 
