@@ -21,5 +21,9 @@ namespace ApplicationLayer.Modules.WareHouseApplication
             var res = (from wareHouse in wareHouses select _mapper.Map<WareHouse>(wareHouse)).ToList();
             return res;
         }
+        public async Task<WareHouse> GetByIdAsync(int id)
+        {
+            return _mapper.Map<WareHouse>(await _wareHouseRepository.GetByIdAsync(id)); 
+        }
     }
 }

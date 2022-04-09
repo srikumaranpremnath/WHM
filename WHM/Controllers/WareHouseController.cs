@@ -19,5 +19,11 @@ namespace WHM.Controllers
         {
             return Ok(await wareHouseApplication.GetAllAsync());
         }
+
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetAllAsync(int id)
+        {
+            return Ok(await wareHouseApplication.GetByIdAsync(id));
+        }
     }
 }

@@ -28,9 +28,9 @@ namespace DataLayer.Repository
             return await _context.WareHouse.ToListAsync();
         }
 
-        public Task<WareHouse> GetByIdAsync(int id)
+        public async Task<WareHouse> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.WareHouse.FirstOrDefaultAsync(x => x.WareHouseId == id);
         }
 
         public Task UpdateAsync(WareHouse entity)
