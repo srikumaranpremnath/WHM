@@ -1,8 +1,8 @@
-﻿using DataLayer.Models.AbstractModels;
+﻿using BusinessObjects.Models.Common;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataLayer.Models
+namespace BussinessObjects.Models
 {
     [Table("Products", Schema = "whm")]
     public class Product : Audit
@@ -21,16 +21,16 @@ namespace DataLayer.Models
         public int Count { get; set; }
         [Required]
         public string Brand { get; set; }
-        public string? Model { get; set; }
+        public string Model { get; set; }
         [Required]
         public DateTime ManufactureDate { get; set; }
-        public DateTime? ExpiryDate { get; set; }
+        public DateTime ExpiryDate { get; set; }
         [Required]
-        public virtual int SubCategoryID { get; set; }
+        public virtual int SubCategoryId { get; set; }
         [ForeignKey("SubCategoryID")]
         public virtual SubCategory SubCategory { get; set; }
         [Required]
-        public virtual int WareHouseID { get; set; }
+        public virtual int WareHouseId { get; set; }
         [ForeignKey("WareHouseID")]
         public virtual WareHouse Warehouse { get; set; }
 

@@ -1,15 +1,14 @@
-﻿using DataLayer.Models.AbstractModels;
+﻿using BusinessObjects.Models.Common;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataLayer.Models
+namespace BussinessObjects.Models
 {
     [Table("Users", Schema = "whm")]
     public class User : Audit
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int UserId { get; set; }
         [Required]
         public string Name { get; set; }

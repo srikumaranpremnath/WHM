@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataLayer.ContextSeedData;
 using DataLayer.Models;
+using DataLayer.TableIndex;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Context
 {
@@ -10,7 +12,11 @@ namespace DataLayer.Context
             //Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        { 
+        {
+            modelBuilder.CategorySeed();
+            modelBuilder.WareHouseSeed();
+            modelBuilder.WHMTableIndex();
+
         }
         public DbSet<User> User { get; set; }
         public DbSet<WareHouse> WareHouse { get; set; }

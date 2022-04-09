@@ -1,31 +1,27 @@
-﻿using DataLayer.Models.AbstractModels;
+﻿using BusinessObjects.Models.Common;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataLayer.Models
+namespace BussinessObjects.Models
 {
     [Table("SubCategories", Schema = "whm")]
 
     public class SubCategory : Audit
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int SubCategoryID { get; set; }
+        [Required]
+        public int SubCategoryId { get; set; }
         [Required]
         [StringLength(100)]
-        public string SubCategoryname { get; set; }
+        public string SubCategoryName { get; set; }
         [Required]
         [StringLength(10)]
         public string SubCategoryCode { get; set; }
         [Required]
-        public virtual int CategoryID { get; set; }
+        public virtual int CategoryId { get; set; }
         [ForeignKey("CategoryID")]
         public virtual Category Category { get; set; }
-        [Required]
         [DefaultValue(0)]
         public bool IsDeleted { get; set; }
-
-
     }
 }

@@ -1,9 +1,9 @@
-﻿using DataLayer.Models.AbstractModels;
+﻿using BusinessObjects.Models.Common;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataLayer.Models
+namespace BussinessObjects.Models
 {
     [Table("Categories", Schema = "whm")]
     public class Category : Audit
@@ -13,12 +13,13 @@ namespace DataLayer.Models
         public int CategoryId { get; set; }
         [Required]
         [StringLength(100)]
-        public string Categoryname { get; set; }
+        public string CategoryName { get; set; }
         [Required]
         [StringLength(10)]
         public string CategoryCode { get; set; }
         [Required]
         [DefaultValue(0)]
         public bool IsDeleted { get; set; }
+
     }
 }

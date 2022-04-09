@@ -1,15 +1,12 @@
-﻿using DataLayer.Models.AbstractModels;
+﻿using BusinessObjects.Models.Common;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataLayer.Models
+namespace BussinessObjects.Models
 {
-    [Table("WareHouses", Schema = "whm")]
     public class WareHouse : Audit
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int WareHouseId { get; set; }
         [Required]
         public string WareHouseName { get; set; }
@@ -25,8 +22,8 @@ namespace DataLayer.Models
         public double Latitude { get; set; }
         [Required]
         public double Longitude { get; set; }
-        [Required]
         [DefaultValue(0)]
         public bool IsDeleted { get; set; }
+
     }
 }

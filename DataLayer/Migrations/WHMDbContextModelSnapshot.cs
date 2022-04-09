@@ -24,11 +24,11 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
                     b.Property<string>("CategoryCode")
                         .IsRequired()
@@ -47,16 +47,113 @@ namespace DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryID");
+                    b.HasKey("CategoryId");
+
+                    b.HasIndex("CategoryCode", "Categoryname", "IsDeleted")
+                        .IsUnique();
 
                     b.ToTable("Categories", "whm");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryCode = "CAT001",
+                            Categoryname = "Electronics",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryCode = "CAT002",
+                            Categoryname = "Electricals",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryCode = "CAT003",
+                            Categoryname = "Furnitures",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryCode = "CAT004",
+                            Categoryname = "Machines",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryCode = "CAT005",
+                            Categoryname = "FootWear",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            CategoryCode = "CAT006",
+                            Categoryname = "Medical Equipments",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            CategoryCode = "CAT007",
+                            Categoryname = "Appliances",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            CategoryCode = "CAT008",
+                            Categoryname = "Beauty Products",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 9,
+                            CategoryCode = "CAT009",
+                            Categoryname = "Fitness",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            CategoryId = 10,
+                            CategoryCode = "CAT010",
+                            Categoryname = "Toys",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false
+                        });
                 });
 
             modelBuilder.Entity("DataLayer.Models.Product", b =>
@@ -81,21 +178,19 @@ namespace DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ExpiryDate")
+                    b.Property<DateTime?>("ExpiryDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ManufactureDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Model")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PricePerProduct")
@@ -103,7 +198,7 @@ namespace DataLayer.Migrations
 
                     b.Property<string>("ProductCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
@@ -120,6 +215,9 @@ namespace DataLayer.Migrations
                     b.HasIndex("SubCategoryID");
 
                     b.HasIndex("WareHouseID");
+
+                    b.HasIndex("ProductCode", "SubCategoryID", "PricePerProduct")
+                        .IsUnique();
 
                     b.ToTable("Products", "whm");
                 });
@@ -142,11 +240,13 @@ namespace DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubCategoryCode")
@@ -162,6 +262,9 @@ namespace DataLayer.Migrations
                     b.HasKey("SubCategoryID");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("SubCategoryCode", "SubCategoryname", "IsDeleted")
+                        .IsUnique();
 
                     b.ToTable("SubCategories", "whm");
                 });
@@ -183,21 +286,23 @@ namespace DataLayer.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("EmployeeId")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<long>("Mobile")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -215,6 +320,15 @@ namespace DataLayer.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("Email", "IsDeleted")
+                        .IsUnique();
+
+                    b.HasIndex("Mobile", "IsDeleted")
+                        .IsUnique();
+
+                    b.HasIndex("UserName", "IsDeleted")
+                        .IsUnique();
 
                     b.ToTable("Users", "whm");
                 });
@@ -242,17 +356,19 @@ namespace DataLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
 
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ModifiedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -261,15 +377,90 @@ namespace DataLayer.Migrations
 
                     b.Property<string>("WareHouseCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("WareHouseName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("WareHouseId");
 
+                    b.HasIndex("WareHouseCode", "WareHouseName", "IsDeleted")
+                        .IsUnique();
+
                     b.ToTable("WareHouses", "whm");
+
+                    b.HasData(
+                        new
+                        {
+                            WareHouseId = 1,
+                            City = "Chennai",
+                            Country = "India",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false,
+                            Latitude = 13.08268,
+                            Longitude = 80.270720999999995,
+                            State = "TamilNadu",
+                            WareHouseCode = "WH001",
+                            WareHouseName = "WH_Chennai"
+                        },
+                        new
+                        {
+                            WareHouseId = 2,
+                            City = "Chennai",
+                            Country = "India",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false,
+                            Latitude = 9.9252009999999995,
+                            Longitude = 78.119774000000007,
+                            State = "TamilNadu",
+                            WareHouseCode = "WH002",
+                            WareHouseName = "WH_Madurai"
+                        },
+                        new
+                        {
+                            WareHouseId = 3,
+                            City = "Chennai",
+                            Country = "India",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false,
+                            Latitude = 10.790483,
+                            Longitude = 78.704673999999997,
+                            State = "TamilNadu",
+                            WareHouseCode = "WH003",
+                            WareHouseName = "WH_Tirchy"
+                        },
+                        new
+                        {
+                            WareHouseId = 4,
+                            City = "Banglore",
+                            Country = "India",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false,
+                            Latitude = 12.971598999999999,
+                            Longitude = 77.594566,
+                            State = "Karantaka",
+                            WareHouseCode = "WH004",
+                            WareHouseName = "WH_Bangalore"
+                        },
+                        new
+                        {
+                            WareHouseId = 5,
+                            City = "Hyderabad",
+                            Country = "India",
+                            CreatedAt = new DateTime(2022, 4, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedBy = "Sedded_Data",
+                            IsDeleted = false,
+                            Latitude = 17.385044000000001,
+                            Longitude = 78.486671000000001,
+                            State = "Telangana",
+                            WareHouseCode = "WH005",
+                            WareHouseName = "WH_Hyderabad"
+                        });
                 });
 
             modelBuilder.Entity("DataLayer.Models.Product", b =>
