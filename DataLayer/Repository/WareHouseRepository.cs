@@ -4,6 +4,7 @@ using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repository
+#pragma warning disable CS8619 // Nullability of reference types in value doesn't match target type.
 {
     public class WareHouseRepository : IWareHouseRepository
     {
@@ -13,9 +14,11 @@ namespace DataLayer.Repository
         {
             _context = context;
         }
-        public Task AddAsync(WareHouse entity)
+
+        public async Task AddAsync(WareHouse entity)
         {
-            throw new NotImplementedException();
+            await _context.WareHouse.AddAsync(entity);
+            _context.SaveChanges();
         }
 
         public Task DeleteAsync(WareHouse entity)
@@ -23,15 +26,11 @@ namespace DataLayer.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<List<WareHouse>> GetAllAsync()
-        {
-            return await _context.WareHouse.ToListAsync();
-        }
+        public async Task<List<WareHouse>> GetAllAsync() => await _context.WareHouse.ToListAsync();
 
-        public async Task<WareHouse> GetByIdAsync(int id)
-        {
-            return await _context.WareHouse.FirstOrDefaultAsync(x => x.WareHouseId == id);
-        }
+        public async Task<WareHouse> GetByIdAsync(int id) => await _context.WareHouse.FirstOrDefaultAsync(x => x.WareHouseId == id);
+
+        public Task<WareHouse> GetWareHouseByCode(string code) => _context.WareHouse.FirstOrDefaultAsync(x => x.WareHouseCode == code);
 
         public Task UpdateAsync(WareHouse entity)
         {

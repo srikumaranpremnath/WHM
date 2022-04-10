@@ -1,5 +1,7 @@
 ﻿using ApplicationLayer.Modules.WareHouseApplication;
+using BusinessObjects.RequestObjects;
 using Microsoft.AspNetCore.Mvc;
+using static WHM.ActionResultResponse.ActionResultResponse;
 
 namespace WHM.Controllers
 {
@@ -7,23 +9,32 @@ namespace WHM.Controllers
     [ApiController]
     public class WareHouseController : Controller
     {
-        private readonly WareHouseApplication wareHouseApplication;
+        private readonly WareHouseApplication _wareHouseApplication;
 
         public WareHouseController(WareHouseApplication wareHouseApplication)
         {
-            this.wareHouseApplication = wareHouseApplication;
+            _wareHouseApplication = wareHouseApplication;
         }
 
         [HttpGet("Get")]
-        public async Task<IActionResult> GetAllAsync()
+        public async Task<IActionResult> GetAsync()
         {
-            return Ok(await wareHouseApplication.GetAllAsync());
+            return Ok(await _wareHouseApplication.GetAllAsync());
         }
 
-        [HttpGet("GetById")]
-        public async Task<IActionResult> GetAllAsync(int id)
+        [HttpGet("Get/{id}")]
+        public async Task<IActionResult> GetAsync(int id)
         {
-            return Ok(await wareHouseApplication.GetByIdAsync(id));
+
+            var wareHouse = await _wareHouseApplication.GetByIdAsync(id);
+            return this.PopulateResult(wareHouse);
+        }
+
+        [HttpPost("Create")]
+        public async Task<IActionResult> Post(CreateWareHouse wareHouse)
+        {
+            var response = await _wareHouseApplication.Create(wareHouse);
+            return this.PopulateResult(response);
         }
     }
 }
