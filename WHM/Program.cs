@@ -4,21 +4,24 @@ using DataLayer.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 var services = builder.Services;
+
 // Add services to the container.
 
 services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
-services.AddDbContext<WHMDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("WHMConnection")));
+services.AddDbContext<WHMDbContext>(option => option.UseSqlServer(config.GetConnectionString("WHMConnection")));
 services.AddApplicationLayerDependecyInjection();
 services.AddDataLayerDependencyInjection();
-var app = builder.Build();
 
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }

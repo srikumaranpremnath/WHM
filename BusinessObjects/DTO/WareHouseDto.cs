@@ -1,8 +1,8 @@
-﻿using BusinessObjects.Models.Common;
+﻿using BusinessObjects.DTO.Common;
 
-namespace BusinessObjects.Models
+namespace BusinessObjects.DTO
 {
-    public class WareHouse : Audit
+    public class WareHouseDto : Audit
     {
         public int WareHouseId { get; set; }
         public string WareHouseName { get; set; }
@@ -13,5 +13,6 @@ namespace BusinessObjects.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public bool IsDeleted { get; set; }
+
     }
 }

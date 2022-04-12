@@ -10,16 +10,16 @@ namespace WHM.ActionResultResponse
         {
             if (response.Result != null)
                 return controller.Ok(response.Result);
+            else if (response.Errors.FirstOrDefault() == null)
+                return controller.NoContent();
             else
-            {
-                switch (response.Errors.FirstOrDefault()?.StatusCode)
+                return (response.Errors.FirstOrDefault()?.StatusCode) switch
                 {
-                    case HttpStatusCode.NotFound: return controller.NotFound(response.Errors);
-                    case HttpStatusCode.Conflict: return controller.Conflict(response.Errors);
-                    default: return controller.BadRequest(response.Errors);
-                }
-            }
 
+                    HttpStatusCode.NotFound => controller.NotFound(response.Errors),
+                    HttpStatusCode.Conflict => controller.Conflict(response.Errors),
+                    _ => controller.BadRequest(response.Errors),
+                };
         }
     }
 }

@@ -28,5 +28,22 @@ namespace DataLayer.Models
         [Required]
         [DefaultValue(0)]
         public bool IsDeleted { get; set; }
+
+        public void SetCreatedColumns()
+        {
+            CreatedAt = DateTime.Now;
+            CreatedBy = string.Empty;
+        }
+
+        public void SetModifyColumns()
+        {
+            ModifiedAt = DateTime.Now;
+            ModifiedBy = string.Empty;
+        }
+
+        public void Delete()
+        {
+            IsDeleted = true;
+        }
     }
 }

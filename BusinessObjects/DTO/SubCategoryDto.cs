@@ -1,11 +1,8 @@
-﻿using BusinessObjects.Models.Common;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using BusinessObjects.DTO.Common;
 
-namespace BusinessObjects.Models
+namespace BusinessObjects.DTO
 {
-    [Table("SubCategories", Schema = "whm")]
-
-    public class SubCategory : Audit
+    public class SubCategoryDto : Audit
     {
         public int SubCategoryId { get; set; }
         public string SubCategoryName { get; set; }

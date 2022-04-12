@@ -1,8 +1,8 @@
-﻿using BusinessObjects.Models.Common;
+﻿using BusinessObjects.DTO.Common;
 
-namespace BusinessObjects.Models
+namespace BusinessObjects.DTO
 {
-    public class Product : Audit
+    public class ProductDto : Audit
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

@@ -1,6 +1,6 @@
 ﻿using ApplicationLayer.Responses;
 using AutoMapper;
-using BusinessObjects.Models;
+using BusinessObjects.DTO;
 using BusinessObjects.RequestObjects;
 using DataLayer.Interface;
 using System.Net;
@@ -19,33 +19,60 @@ namespace ApplicationLayer.Modules.WareHouseApplication
             _mapper = mapper;
         }
 
-        public async Task<ActionResultResponse<List<WareHouse>>> GetAllAsync()
+        public async Task<ActionResultResponse<List<WareHouseDto>>> GetAllAsync()
         {
             var wareHouses = await _wareHouseRepository.GetAllAsync();
-            var res = (from wareHouse in wareHouses select _mapper.Map<WareHouse>(wareHouse)).ToList();
-            return new ActionResultResponse<List<WareHouse>>(res);
+            var res = (from wareHouse in wareHouses select _mapper.Map<WareHouseDto>(wareHouse)).ToList();
+            return new ActionResultResponse<List<WareHouseDto>>(res);
         }
 
-        public async Task<ActionResultResponse<WareHouse>> GetByIdAsync(int id)
+        public async Task<ActionResultResponse<WareHouseDto>> GetByIdAsync(int id)
         {
-            var entity = _mapper.Map<WareHouse>(await _wareHouseRepository.GetByIdAsync(id));
+            var entity = _mapper.Map<WareHouseDto>(await _wareHouseRepository.GetByIdAsync(id));
             return entity == null
-                ? new ActionResultResponse<WareHouse>(new ResponseErrors(HttpStatusCode.NotFound, $"WareHouse {id} was not found."))
-                : new ActionResultResponse<WareHouse>(entity);
+                ? new ActionResultResponse<WareHouseDto>(new ResponseErrors(HttpStatusCode.NotFound, $"WareHouse {id} was not found."))
+                : new ActionResultResponse<WareHouseDto>(entity);
         }
 
-        public async Task<ActionResultResponse<WareHouse>> Create(CreateWareHouse wareHouse)
+        public async Task<ActionResultResponse<WareHouseDto>> CreateAsync(WareHouseRequest request)
         {
-            var entity = await _wareHouseRepository.GetWareHouseByCode(wareHouse.WareHouseCode);
-            if (entity != null)
-                return new ActionResultResponse<WareHouse>(new ResponseErrors(HttpStatusCode.Conflict, $"WareHouse Code{wareHouse.WareHouseCode} already exists."));
-            entity = _mapper.Map<DomainWareHouse>(wareHouse);
-            entity.CreatedBy = string.Empty;
-            entity.CreatedAt = DateTime.Now;
-            await _wareHouseRepository.AddAsync(entity);
-            var result = _mapper.Map<WareHouse>(await _wareHouseRepository.GetWareHouseByCode(wareHouse.WareHouseCode));
-            return new ActionResultResponse<WareHouse>(result);
+            var wareHouse = await _wareHouseRepository.GetWareHouseByCode(request.WareHouseCode);
+            if (wareHouse != null)
+                return new ActionResultResponse<WareHouseDto>(new ResponseErrors(HttpStatusCode.Conflict, $"WareHouse Code{request.WareHouseCode} already exists."));
 
+            wareHouse = _mapper.Map<DomainWareHouse>(request);
+            wareHouse.SetCreatedColumns();
+            await _wareHouseRepository.AddAsync(wareHouse);
+
+            var result = _mapper.Map<WareHouseDto>(await _wareHouseRepository.GetWareHouseByCode(request.WareHouseCode));
+            return new ActionResultResponse<WareHouseDto>(result);
+
+        }
+
+        public async Task<ActionResultResponse<object>> UpdateAsync(int id, WareHouseRequest request)
+        {
+            var wareHouse = await _wareHouseRepository.GetByIdAsync(id);
+            if (wareHouse == null)
+                return new ActionResultResponse<object>(new ResponseErrors(HttpStatusCode.NotFound, $"WareHouse {id} was not found."));
+
+            wareHouse = _mapper.Map(request, wareHouse);
+            wareHouse.SetModifyColumns();
+            await _wareHouseRepository.UpdateAsync(wareHouse);
+
+            return new ActionResultResponse<object>(null);
+        }
+
+        public async Task<ActionResultResponse<object>> DeleteAsync(int id)
+        {
+
+            var wareHouse = await _wareHouseRepository.GetByIdAsync(id);
+            if (wareHouse == null)
+                return new ActionResultResponse<object>(new ResponseErrors(HttpStatusCode.NotFound, $"WareHouse {id} was not found."));
+
+            wareHouse.Delete();
+            await _wareHouseRepository.DeleteAsync(wareHouse);
+
+            return new ActionResultResponse<object>(null);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace WHM.Controllers
         [HttpGet("Get")]
         public async Task<IActionResult> GetAsync()
         {
-            return Ok(await _wareHouseApplication.GetAllAsync());
+            return this.PopulateResult(await _wareHouseApplication.GetAllAsync());
         }
 
         [HttpGet("Get/{id}")]
@@ -30,10 +30,24 @@ namespace WHM.Controllers
             return this.PopulateResult(wareHouse);
         }
 
-        [HttpPost("Create")]
-        public async Task<IActionResult> Post(CreateWareHouse wareHouse)
+        [HttpPost("Post")]
+        public async Task<IActionResult> Post(WareHouseRequest wareHouse)
         {
-            var response = await _wareHouseApplication.Create(wareHouse);
+            var response = await _wareHouseApplication.CreateAsync(wareHouse);
+            return this.PopulateResult(response);
+        }
+
+        [HttpPut("Put/{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody] WareHouseRequest wareHouse)
+        {
+            var response = await _wareHouseApplication.UpdateAsync(id, wareHouse);
+            return this.PopulateResult(response);
+        }
+
+        [HttpPut("Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _wareHouseApplication.DeleteAsync(id);
             return this.PopulateResult(response);
         }
     }

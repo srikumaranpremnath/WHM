@@ -12,10 +12,10 @@
         {
             Errors = new List<ResponseErrors>() { error };
         }
-        public ActionResultResponse(IEnumerable<ResponseErrors> errors) : this()
-        {
-            Errors = new List<ResponseErrors>(errors);
-        }
+        //public ActionResultResponse(IEnumerable<ResponseErrors> errors) : this()
+        //{
+        //    Errors = new List<ResponseErrors>(errors);
+        //}
         public ActionResultResponse()
         {
             Errors = new List<ResponseErrors>();

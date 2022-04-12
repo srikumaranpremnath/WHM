@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using BusinessObjects.Models;
+using BusinessObjects.DTO;
 using BusinessObjects.RequestObjects;
+using DataLayer.Models;
 
 namespace ApplicationLayer.AutoMapperProfiles
 {
@@ -8,8 +9,9 @@ namespace ApplicationLayer.AutoMapperProfiles
     {
         public Profiles()
         {
-            CreateMap<WareHouse, DataLayer.Models.WareHouse>().ReverseMap();
-            CreateMap<DataLayer.Models.WareHouse, CreateWareHouse>().ReverseMap();
+            // WareHouse Mapper
+            CreateMap<WareHouse, WareHouseDto>().ReverseMap();
+            CreateMap<WareHouseRequest, WareHouse>().ReverseMap();
         }
     }
 }

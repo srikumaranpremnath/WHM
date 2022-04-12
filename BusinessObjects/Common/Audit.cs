@@ -1,4 +1,4 @@
-﻿namespace BusinessObjects.Models.Common
+﻿namespace BusinessObjects.DTO.Common
 {
     public class Audit
     {

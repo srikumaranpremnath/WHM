@@ -2,7 +2,7 @@
 
 namespace BusinessObjects.RequestObjects
 {
-    public class CreateWareHouse
+    public class WareHouseRequest
     {
         [Required]
         public string WareHouseName { get; set; }
