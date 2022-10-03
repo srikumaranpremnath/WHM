@@ -44,7 +44,7 @@ namespace WHM.Controllers
             return this.PopulateResult(response);
         }
 
-        [HttpPut("Delete/{id}")]
+        [HttpDelete ("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _wareHouseApplication.DeleteAsync(id);

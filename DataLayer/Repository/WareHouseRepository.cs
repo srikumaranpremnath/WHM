@@ -23,7 +23,7 @@ namespace DataLayer.Repository
 
         public async Task DeleteAsync(WareHouse entity)
         {
-            _context.Entry(await GetByIdAsync(entity.WareHouseId)).CurrentValues.SetValues(entity);
+            _context.WareHouse.Update(entity);
             await _context.SaveChangesAsync();
         }
 
@@ -35,7 +35,7 @@ namespace DataLayer.Repository
 
         public async Task UpdateAsync(WareHouse entity)
         {
-            _context.Entry(await GetByIdAsync(entity.WareHouseId)).CurrentValues.SetValues(entity);
+            _context.WareHouse.Update(entity);
             await _context.SaveChangesAsync();
         }
     }
