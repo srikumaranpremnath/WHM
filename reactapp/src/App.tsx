@@ -1,12 +1,12 @@
 import './App.css';
-import ResponsiveAppBar from './Components/Navbar'
-import LandingPage from './Components/LandingPage';
+import WHMRoutes from './Components/Router';
+import Navbar from './Components/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <ResponsiveAppBar></ResponsiveAppBar>
-      <LandingPage></LandingPage>
+      <Navbar/>
+      <WHMRoutes></WHMRoutes>
     </div>
   );
 }

@@ -1,0 +1,26 @@
+.rdt_Table,
+.rdt_TableRow,
+.rdt_TableCol,
+.rdt_TableCol_Sortable,
+.rdt_TableCell,
+.rdt_TableHeader,
+.rdt_TableHead,
+.rdt_TableHeadRow,
+.rdt_TableBody {
+    margin-top: 10px;
+    font-family: "Calibri";
+    font-size: 20px;
+}
+
+.rdt_TableHeadRow {
+    font-weight: bolder;
+}
+
+.rdt_TableBody {
+    margin-top: 2px;
+
+}
+
+.table {
+    padding: 5px;
+}

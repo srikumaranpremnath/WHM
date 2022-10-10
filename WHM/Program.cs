@@ -16,7 +16,14 @@ services.AddSwaggerGen();
 services.AddDbContext<WHMDbContext>(option => option.UseSqlServer(config.GetConnectionString("WHMConnection")));
 services.AddApplicationLayerDependecyInjection();
 services.AddDataLayerDependencyInjection();
-
+services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyPolicy",
+                      policy =>
+                      {
+                          policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                      });
+});
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -26,8 +33,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
+app.UseHttpsRedirection();
+app.UseCors("MyPolicy");
 app.UseAuthorization();
 
 app.MapControllers();
