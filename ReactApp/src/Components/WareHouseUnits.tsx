@@ -82,10 +82,6 @@ export default function WHMRoutes() {
 
     ];
 
-
-
-
-
     return (<div>
         <h1> Ware house data</h1>
         <DataTable className='table'

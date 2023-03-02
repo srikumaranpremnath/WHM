@@ -4,6 +4,7 @@ using DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(WHMDbContext))]
-    partial class WHMDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230201065233_Added Seed Data")]
+    partial class AddedSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +71,7 @@ namespace DataLayer.Migrations
                             CategoryId = 1,
                             CategoryCode = "CAT001",
                             Categoryname = "Electronics",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -78,7 +80,7 @@ namespace DataLayer.Migrations
                             CategoryId = 2,
                             CategoryCode = "CAT002",
                             Categoryname = "Electricals",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -87,7 +89,7 @@ namespace DataLayer.Migrations
                             CategoryId = 3,
                             CategoryCode = "CAT003",
                             Categoryname = "Furnitures",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -96,7 +98,7 @@ namespace DataLayer.Migrations
                             CategoryId = 4,
                             CategoryCode = "CAT004",
                             Categoryname = "Machines",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -105,7 +107,7 @@ namespace DataLayer.Migrations
                             CategoryId = 5,
                             CategoryCode = "CAT005",
                             Categoryname = "FootWear",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -114,7 +116,7 @@ namespace DataLayer.Migrations
                             CategoryId = 6,
                             CategoryCode = "CAT006",
                             Categoryname = "Medical Equipments",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -123,7 +125,7 @@ namespace DataLayer.Migrations
                             CategoryId = 7,
                             CategoryCode = "CAT007",
                             Categoryname = "Appliances",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -132,7 +134,7 @@ namespace DataLayer.Migrations
                             CategoryId = 8,
                             CategoryCode = "CAT008",
                             Categoryname = "Beauty Products",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -141,7 +143,7 @@ namespace DataLayer.Migrations
                             CategoryId = 9,
                             CategoryCode = "CAT009",
                             Categoryname = "Fitness",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         },
@@ -150,17 +152,8 @@ namespace DataLayer.Migrations
                             CategoryId = 10,
                             CategoryCode = "CAT010",
                             Categoryname = "Toys",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            CategoryId = 12,
-                            CategoryCode = "asd",
-                            Categoryname = "asd",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
-                            CreatedBy = "Sedded_Dasdata",
                             IsDeleted = false
                         },
                         new
@@ -168,7 +161,7 @@ namespace DataLayer.Migrations
                             CategoryId = 11,
                             CategoryCode = "CAT0011",
                             Categoryname = "NewDATA",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false
                         });
@@ -414,7 +407,7 @@ namespace DataLayer.Migrations
                             WareHouseId = 1,
                             City = "Chennai",
                             Country = "India",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false,
                             Latitude = 13.08268,
@@ -428,7 +421,7 @@ namespace DataLayer.Migrations
                             WareHouseId = 2,
                             City = "Chennai",
                             Country = "India",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false,
                             Latitude = 9.9252009999999995,
@@ -442,7 +435,7 @@ namespace DataLayer.Migrations
                             WareHouseId = 3,
                             City = "Chennai",
                             Country = "India",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false,
                             Latitude = 10.790483,
@@ -456,7 +449,7 @@ namespace DataLayer.Migrations
                             WareHouseId = 4,
                             City = "Banglore",
                             Country = "India",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false,
                             Latitude = 12.971598999999999,
@@ -470,7 +463,7 @@ namespace DataLayer.Migrations
                             WareHouseId = 5,
                             City = "Hyderabad",
                             Country = "India",
-                            CreatedAt = new DateTime(2023, 2, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedAt = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             CreatedBy = "Sedded_Data",
                             IsDeleted = false,
                             Latitude = 17.385044000000001,

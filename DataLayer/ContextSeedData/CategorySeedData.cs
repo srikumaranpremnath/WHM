@@ -100,8 +100,31 @@ namespace DataLayer.ContextSeedData
                     CreatedBy = "Sedded_Data",
                     CreatedAt = DateTime.Today.Date,
                     IsDeleted = false
-                }
+                },
+                 new Category()
+                 {
+                     CategoryId = 12,
+                     Categoryname = "asd",
+                     CategoryCode = "asd",
+                     CreatedBy = "Sedded_Dasdata",
+                     CreatedAt = DateTime.Today.Date,
+                     IsDeleted = false
+                 }
             );
+        }
+
+        public static void NewCategorySeed(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Category>().HasData(
+                new Category()
+                {
+                    CategoryId = 11,
+                    Categoryname = "NewDATA",
+                    CategoryCode = "CAT0011",
+                    CreatedBy = "Sedded_Data",
+                    CreatedAt = DateTime.Today.Date,
+                    IsDeleted = false
+                });
         }
     }
 }

@@ -16,7 +16,7 @@ namespace DataLayer.Context
             modelBuilder.CategorySeed();
             modelBuilder.WareHouseSeed();
             modelBuilder.WHMTableIndex();
-
+            modelBuilder.NewCategorySeed();
         }
         public DbSet<User> User { get; set; }
         public DbSet<WareHouse> WareHouse { get; set; }
